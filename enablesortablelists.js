@@ -29,7 +29,7 @@
                 //For/In loop was use then SortableElement was undefine as getElementsByClassName
                 //return an array, so fix it using for loop
                 var allSortableElement = document.getElementsByClassName('sortable');
-                for (var i = 0, max = allSortableElement.length; i < max; i++) {
+                for (var i = 0; i < allSortableElement.length; i++) {
                     //Update code to get element from array
                     allSortableElement[i].setAttribute('class', '');
                 }
