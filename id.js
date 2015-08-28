@@ -5,31 +5,32 @@
   hhaW4oKnppcChzWy0yOjotMl0sIHNbOjotMl0pKSk=
 \*======================================================================*/
 
-if (NAMESPACE == null
-        || typeof (NAMESPACE) == 'undefined') {
-    NAMESPACE = {};
+(function () {
+    if (NAMESPACE === null || typeof (NAMESPACE) != "object") {
+        var NAMESPACE = {};
 
-    var id = function (id) {
-        var _all_ids = {};
-        var persona = {};
-        var _id = id;
+        var GetId = function (id) {
+            var _id = id;
+            var _closed = false;
 
-        var getId = function () {
-            return _id;
-        }
+            var getId = function () {
+                return _id;
+            };
 
-        persona.getId = getId;
-        var _closed = false;
+            var setClose = function () {
+                //Delete will not work
+                _closed = true;
+                return _closed;
+            };
 
-        var close = function () {
-            delete _all_ids[getId()];
-            this._closed = true;
-        }
+            var persona = {
+                getId: getId,
+                isClose: setClose
+            };
 
-        persona.close = close;
+            return persona;
+        };
 
-        return persona;
+        NAMESPACE.id = GetId;
     }
-
-    NAMESPACE['id'] = id;
-}
+})();
